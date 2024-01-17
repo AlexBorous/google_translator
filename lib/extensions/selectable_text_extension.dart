@@ -10,7 +10,7 @@ extension TranslateSelectableText on SelectableText {
     return FutureBuilder<String>(
         future: GoogleTranslatorController().translateText(data ?? ""),
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-          String response = placeholder ?? "...";
+          String response = placeholder ?? "";
           if (snapshot.hasData) {
             response = snapshot.data!;
           }
