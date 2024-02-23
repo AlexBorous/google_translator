@@ -20,7 +20,7 @@ class GoogleTranslatorRepository {
       required Duration cacheDuration,
       required String text}) async {
     // Check if the target language is 'en'
-    if (target != 'en') {
+    if (target == 'en') {
       return text; // Return original text without making API call
     }
 
