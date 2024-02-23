@@ -19,6 +19,11 @@ class GoogleTranslatorRepository {
       required String apiKey,
       required Duration cacheDuration,
       required String text}) async {
+    // Check if the target language is 'en'
+    if (target != 'en') {
+      return text; // Return original text without making API call
+    }
+
     try {
       Response response = await _dio.post("?key=$apiKey",
           data: {
