@@ -7,10 +7,12 @@ class GoogleTranslatorRepository {
   GoogleTranslatorRepository() {
     // Set cache data for Dio
     _dio
-      ..interceptors.add(DioCacheManager(CacheConfig(
-              baseUrl:
-                  "https://translation.googleapis.com/language/translate/v2"))
-          .interceptor);
+      ..interceptors.add(DioCacheInterceptor(
+          options: CacheOptions(
+        store: MemCacheStore(),
+        allowPostMethod: true,
+        keyBuilder: CacheOptions.defaultCacheKeyBuilder,
+      )));
   }
 
   Future<String> translate(
@@ -25,14 +27,10 @@ class GoogleTranslatorRepository {
     }
 
     try {
-      Response response = await _dio.post("?key=$apiKey",
-          data: {
-            "q": text,
-            "source": source,
-            "target": target,
-            "format": "text"
-          },
-          options: buildCacheOptions(cacheDuration));
+      Response response = await _dio.post(
+        "?key=$apiKey",
+        data: {"q": text, "source": source, "target": target, "format": "text"},
+      );
 
       if (response.statusCode == 200 &&
           response.data?["data"]?["translations"] != null &&

@@ -1,13 +1,12 @@
 library google_translator;
 
-import 'dart:ui' as ui;
-
 /*
  * Created by Julio Cortez on 2021/06/29.
  * email: julio.cesar.g.c125@gmail.com
 */
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
 
 part 'components/google_translator_init.dart';

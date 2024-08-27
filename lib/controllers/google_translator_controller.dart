@@ -27,7 +27,7 @@ class GoogleTranslatorController {
       .._automaticDetection = automaticDetection
       .._cacheDuration = cacheDuration
       .._translateTo = translateTo;
-    var window = WidgetsBinding.instance?.window ?? ui.window;
+    var window = WidgetsBinding.instance.window;
     _instance._deviceLocation = window.locale;
   }
 
